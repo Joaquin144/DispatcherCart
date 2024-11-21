@@ -9,12 +9,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
-import java.util.stream.Collector;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -156,12 +153,10 @@ public class HomeController {
 					String uploadDir = "profile_uploads/profile_img";
 					File directory = new File(uploadDir);
 
-					// Create the directory if it does not exist
 					if (!directory.exists()) {
 						directory.mkdirs();
 					}
 
-					// Save the file to the target directory
 					Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
 					Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 

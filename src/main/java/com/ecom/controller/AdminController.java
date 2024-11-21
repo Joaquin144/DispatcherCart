@@ -10,7 +10,6 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -125,13 +124,14 @@ public class AdminController {
 			if (ObjectUtils.isEmpty(saveCategory)) {
 				session.setAttribute("errorMsg", "Not saved ! internal server error");
 			} else {
+				String uploadDir = "profile_uploads/profile_img";
+				File directory = new File(uploadDir);
 
-				File saveFile = new ClassPathResource("static/img").getFile();
+				if (!directory.exists()) {
+					directory.mkdirs();
+				}
 
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator
-						+ file.getOriginalFilename());
-
-				// System.out.println(path);
+				Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
 				session.setAttribute("succMsg", "Saved successfully");
@@ -179,12 +179,14 @@ public class AdminController {
 		if (!ObjectUtils.isEmpty(updateCategory)) {
 
 			if (!file.isEmpty()) {
-				File saveFile = new ClassPathResource("static/img").getFile();
+				String uploadDir = "profile_uploads/category_img";
+				File directory = new File(uploadDir);
 
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "category_img" + File.separator
-						+ file.getOriginalFilename());
+				if(!directory.exists()) {
+					directory.mkdirs();
+				}
 
-				// System.out.println(path);
+				Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			}
 
@@ -208,13 +210,14 @@ public class AdminController {
 		Product saveProduct = productService.saveProduct(product);
 
 		if (!ObjectUtils.isEmpty(saveProduct)) {
+			String uploadDir = "product_uploads/product_img";
+			File directory = new File(uploadDir);
 
-			File saveFile = new ClassPathResource("static/img").getFile();
+			if(!directory.exists()) {
+				directory.mkdirs();
+			}
 
-			Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator
-					+ image.getOriginalFilename());
-
-			// System.out.println(path);
+			Path path = Paths.get(directory.getAbsolutePath(), image.getOriginalFilename());
 			Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
 			session.setAttribute("succMsg", "Product Saved Success");
@@ -301,7 +304,7 @@ public class AdminController {
 		}
 		m.addAttribute("userType",type);
 		m.addAttribute("users", users);
-		return "/admin/users";
+		return "admin/users";
 	}
 
 	@GetMapping("/updateSts")
@@ -312,7 +315,7 @@ public class AdminController {
 		} else {
 			session.setAttribute("errorMsg", "Something wrong on server");
 		}
-		return "redirect:/admin/users?type="+type;
+		return "redirect:admin/users?type="+type;
 	}
 
 	@GetMapping("/orders")
@@ -333,7 +336,7 @@ public class AdminController {
 		m.addAttribute("isFirst", page.isFirst());
 		m.addAttribute("isLast", page.isLast());
 
-		return "/admin/orders";
+		return "admin/orders";
 	}
 
 	@PostMapping("/update-order-status")
@@ -361,7 +364,7 @@ public class AdminController {
 		} else {
 			session.setAttribute("errorMsg", "status not updated");
 		}
-		return "redirect:/admin/orders";
+		return "redirect:admin/orders";
 	}
 
 	@GetMapping("/search-order")
@@ -398,13 +401,13 @@ public class AdminController {
 			m.addAttribute("isLast", page.isLast());
 
 		}
-		return "/admin/orders";
+		return "admin/orders";
 
 	}
 
 	@GetMapping("/add-admin")
 	public String loadAdminAdd() {
-		return "/admin/add_admin";
+		return "admin/add_admin";
 	}
 
 	@PostMapping("/save-admin")
@@ -417,12 +420,14 @@ public class AdminController {
 
 		if (!ObjectUtils.isEmpty(saveUser)) {
 			if (!file.isEmpty()) {
-				File saveFile = new ClassPathResource("static/img").getFile();
+				String uploadDir = "profile_uploads/profile_img";
+				File directory = new File(uploadDir);
 
-				Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "profile_img" + File.separator
-						+ file.getOriginalFilename());
+				if (!directory.exists()) {
+					directory.mkdirs();
+				}
 
-//				System.out.println(path);
+				Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 			}
 			session.setAttribute("succMsg", "Register successfully");
@@ -435,7 +440,7 @@ public class AdminController {
 
 	@GetMapping("/profile")
 	public String profile() {
-		return "/admin/profile";
+		return "admin/profile";
 	}
 
 	@PostMapping("/update-profile")

@@ -8,7 +8,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -87,10 +86,14 @@ public class ProductServiceImpl implements ProductService {
 			if (!image.isEmpty()) {
 
 				try {
-					File saveFile = new ClassPathResource("static/img").getFile();
+					String uploadDir = "product_uploads/product_img";
+					File directory = new File(uploadDir);
 
-					Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "product_img" + File.separator
-							+ image.getOriginalFilename());
+					if(!directory.exists()){
+						directory.mkdirs();
+					}
+
+					Path path = Paths.get(directory.getAbsolutePath(), image.getOriginalFilename());
 					Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
 				} catch (Exception e) {
