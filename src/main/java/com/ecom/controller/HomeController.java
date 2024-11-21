@@ -153,13 +153,18 @@ public class HomeController {
 
 			if (!ObjectUtils.isEmpty(saveUser)) {
 				if (!file.isEmpty()) {
-					File saveFile = new ClassPathResource("static/img").getFile();
+					String uploadDir = "profile_uploads/profile_img";
+					File directory = new File(uploadDir);
 
-					Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + "profile_img" + File.separator
-							+ file.getOriginalFilename());
+					// Create the directory if it does not exist
+					if (!directory.exists()) {
+						directory.mkdirs();
+					}
 
-//					System.out.println(path);
+					// Save the file to the target directory
+					Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
 					Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
 				}
 				session.setAttribute("succMsg", "Register successfully");
 			} else {
@@ -167,7 +172,7 @@ public class HomeController {
 			}
 		}
 
-		return "redirect:/register";
+		return "index";
 	}
 
 //	Forgot Password Code 
