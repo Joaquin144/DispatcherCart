@@ -94,10 +94,29 @@ Check out the live application here: [Dispatcher Cart Live](http://159.223.88.90
    ```bash
    sudo ./start.sh
 
+## 📸 DigitalOcean Screenshots
+
+Below are some screenshots of the **Dispatcher Cart** deployed on a DigitalOcean Droplet:
+
+### 1. Droplet Dashboard
+![Droplet Dashboard](assets/do1.png)
+![Droplet Dashboard](assets/do2.png)
+![Droplet Dashboard](assets/do3.png)
+_The dashboard showing the created droplet for hosting Dispatcher Cart._
+
+### 2. Logs for Application Running on Droplet
+![App Running](assets/logs.png)  
+_Dispatcher Cart running live on the droplet._
+
+### 3. Estimated bill for 1 droplet
+![SSH Terminal](assets/estimate_bill.png)  
+_The estimated bill on DigitalOcean for the aforementioned configuration_
 
 ## Profile
 - [LinkedIn](https://www.linkedin.com/in/vibhu-26m): Let's connect and network on LinkedIn.
 
 - [GitHub](https://github.com/Joaquin144): Check out my repositories and contributions on GitHub.
+
+- [Gmail](mailto:vvpp98.comco@gmail.com): Mail to me at my gmail id
 
 - [Play Store](https://play.google.com/store/apps/developer?id=DevCommOP): Explore my apps on the Play Store.
