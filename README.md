@@ -2,6 +2,8 @@
 
 Dispatcher Cart is a fully open-source eCommerce application that offers a wide range of products, including groceries, electronics, beauty products, fitness items, and much more. The application is designed to be user-friendly, scalable, and robust for online shopping needs.
 
+[![DigitalOcean Referral Badge](https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg)](https://www.digitalocean.com/?refcode=a2e2ec1d058e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge)
+
 ---
 
 ## 🚀 Features
@@ -111,6 +113,16 @@ _Dispatcher Cart running live on the droplet._
 ### 3. Estimated bill for 1 droplet
 ![SSH Terminal](assets/estimate_bill.png)  
 _The estimated bill on DigitalOcean for the aforementioned configuration_
+
+## 🌟 SignUp with DigitalOcean
+Looking for a reliable cloud platform? Sign up for DigitalOcean through my [referral link](https://m.do.co/c/a2e2ec1d058e) and get **$200 in free credit** (valid for 60 days)! 🚀
+
+Why choose DigitalOcean?
+- **Affordable Pricing**: Perfect for developers and startups.
+- **Easy Setup**: Get your servers running in minutes with an intuitive interface.
+- **High Performance**: Reliable and scalable cloud solutions.
+
+Start your cloud journey today and power up your projects with DigitalOcean! 💻
 
 ## Profile
 - [LinkedIn](https://www.linkedin.com/in/vibhu-26m): Let's connect and network on LinkedIn.
