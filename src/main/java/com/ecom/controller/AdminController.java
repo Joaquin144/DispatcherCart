@@ -124,7 +124,7 @@ public class AdminController {
 			if (ObjectUtils.isEmpty(saveCategory)) {
 				session.setAttribute("errorMsg", "Not saved ! internal server error");
 			} else {
-				String uploadDir = "category_uploads/category_img";
+				String uploadDir = "img/category_img";
 				File directory = new File(uploadDir);
 
 				if (!directory.exists()) {
