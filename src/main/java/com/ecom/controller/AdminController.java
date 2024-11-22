@@ -124,15 +124,7 @@ public class AdminController {
 			if (ObjectUtils.isEmpty(saveCategory)) {
 				session.setAttribute("errorMsg", "Not saved ! internal server error");
 			} else {
-				String uploadDir = "img/category_img";
-				File directory = new File(uploadDir);
-
-				if (!directory.exists()) {
-					directory.mkdirs();
-				}
-
-				Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
-				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+				uploadCategoryImage(file);
 
 				session.setAttribute("succMsg", "Saved successfully");
 			}
@@ -179,15 +171,7 @@ public class AdminController {
 		if (!ObjectUtils.isEmpty(updateCategory)) {
 
 			if (!file.isEmpty()) {
-				String uploadDir = "profile_uploads/category_img";
-				File directory = new File(uploadDir);
-
-				if(!directory.exists()) {
-					directory.mkdirs();
-				}
-
-				Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
-				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+				uploadCategoryImage(file);
 			}
 
 			session.setAttribute("succMsg", "Category update success");
@@ -196,6 +180,18 @@ public class AdminController {
 		}
 
 		return "redirect:/admin/loadEditCategory/" + category.getId();
+	}
+
+	private void uploadCategoryImage(@RequestParam("file") MultipartFile file) throws IOException {
+		String uploadDir = "img/category_img";
+		File directory = new File(uploadDir);
+
+		if(!directory.exists()) {
+			directory.mkdirs();
+		}
+
+		Path path = Paths.get(directory.getAbsolutePath(), file.getOriginalFilename());
+		Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	@PostMapping("/saveProduct")
@@ -210,7 +206,7 @@ public class AdminController {
 		Product saveProduct = productService.saveProduct(product);
 
 		if (!ObjectUtils.isEmpty(saveProduct)) {
-			String uploadDir = "product_uploads/product_img";
+			String uploadDir = "img/product_img";
 			File directory = new File(uploadDir);
 
 			if(!directory.exists()) {
@@ -420,7 +416,7 @@ public class AdminController {
 
 		if (!ObjectUtils.isEmpty(saveUser)) {
 			if (!file.isEmpty()) {
-				String uploadDir = "profile_uploads/profile_img";
+				String uploadDir = "img/profile_img";
 				File directory = new File(uploadDir);
 
 				if (!directory.exists()) {
